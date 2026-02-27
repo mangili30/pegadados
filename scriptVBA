@@ -1,0 +1,67 @@
+(defun c:EXTRAIR_PASTA ( / pasta arquivos arquivo
+                          doc path file
+                          maquina conjunto subconjunto pos
+                          qnt descricao numero data esc)
+
+  (setq pasta (getstring "\nDigite o caminho da pasta (ex: C:/Projetos/): "))
+
+  (if (/= (substr pasta (strlen pasta) 1) "/")
+    (setq pasta (strcat pasta "/"))
+  )
+
+  (setq arquivos (vl-directory-files pasta "*.dwg" 1))
+
+  (setq path (strcat (getenv "USERPROFILE") "/Desktop/Consolidado_DWG.csv"))
+  (setq file (open path "w"))
+
+  (write-line
+    "Arquivo;MAQUINA;CONJUNTO;SUBCONJUNTO;POS;QUANTIDADE;DESCRICAO;NUMERO;DATA;ESCALA"
+    file)
+
+  (foreach arquivo arquivos
+
+    (command "_.OPEN" (strcat pasta arquivo))
+
+    (setq maquina "" conjunto "" subconjunto "" pos ""
+          qnt "" descricao "" numero "" data "" esc "")
+
+    (setq ss (ssget "X" '((0 . "INSERT") (2 . "LEGENDA"))))
+
+    (if ss
+      (progn
+        (setq ent (ssname ss 0))
+        (setq obj (vlax-ename->vla-object ent))
+        (setq atts (vlax-invoke obj 'GetAttributes))
+
+        (foreach att atts
+          (setq tag (strcase (vla-get-TagString att)))
+          (setq val (vla-get-TextString att))
+
+          (cond
+            ((= tag "MAQUINA") (setq maquina val))
+            ((= tag "CONJUNTO") (setq conjunto val))
+            ((= tag "SUB-CONJUNTO") (setq subconjunto val))
+            ((= tag "POS") (setq pos val))
+            ((= tag "QUNAT") (setq qnt val))
+            ((= tag "DESCRICAO") (setq descricao val))
+            ((= tag "NUMERO") (setq numero val))
+            ((= tag "DATA") (setq data val))
+            ((= tag "ESC") (setq esc val))
+          )
+        )
+      )
+    )
+
+    (write-line
+      (strcat
+        arquivo ";" maquina ";" conjunto ";" subconjunto ";" pos ";"
+        qnt ";" descricao ";" numero ";" data ";" esc)
+      file)
+
+    (command "_.CLOSE" "_Y")
+  )
+
+  (close file)
+  (princ (strcat "\nExportação concluída: " path))
+  (princ)
+)
