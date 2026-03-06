@@ -1,10 +1,6 @@
-Below is a clean, technical **README.md** in English, suitable for a professional GitHub repository.
+#SolidWorks – Automatic Custom Property Extraction (.SLDPRT)
 
----
-
-# 📦 SolidWorks – Automatic Custom Property Extraction (.SLDPRT)
-
-## 📌 Description
+# Description
 
 VBA macro for **SolidWorks** that:
 
@@ -19,7 +15,7 @@ VBA macro for **SolidWorks** that:
 
 ---
 
-## 🎯 Purpose
+## Purpose
 
 Automate metadata extraction for:
 
@@ -31,7 +27,7 @@ Automate metadata extraction for:
 
 ---
 
-## 📊 Extracted Properties
+## Extracted Properties
 
 The macro extracts the following properties:
 
@@ -60,9 +56,9 @@ Property retrieval includes fallback logic:
 
 ---
 
-## ⚙️ How to Use
+## How to Use
 
-### 1️⃣ Create the Macro
+### Create the Macro
 
 Inside SolidWorks:
 
@@ -80,7 +76,7 @@ Paste the provided VBA code into the editor.
 
 ---
 
-### 2️⃣ Run the Macro
+### Run the Macro
 
 * Execute the macro
 * Select the folder containing `.sldprt` files
@@ -88,7 +84,7 @@ Paste the provided VBA code into the editor.
 
 ---
 
-## 📁 Output
+## Output
 
 Generated file:
 
@@ -116,7 +112,7 @@ Delimiter used:
 
 ---
 
-## 🧠 Technical Overview
+## Technical Overview
 
 For each file, the macro:
 
@@ -136,7 +132,7 @@ For each file, the macro:
 
 ---
 
-## 🛡 Edge Case Handling
+## Edge Case Handling
 
 ✔ Document-level properties
 ✔ Configuration-level properties
@@ -146,7 +142,7 @@ For each file, the macro:
 
 ---
 
-## 📌 Requirements
+## Requirements
 
 * SolidWorks installed
 * Macro execution enabled
@@ -154,7 +150,7 @@ For each file, the macro:
 
 ---
 
-## ⚠ Limitations
+## Limitations
 
 * Does not iterate subfolders (can be extended)
 * Reads only the active configuration
@@ -163,7 +159,7 @@ For each file, the macro:
 
 ---
 
-## 🚀 Possible Enhancements
+## Possible Enhancements
 
 * Recursive folder traversal
 * Multi-configuration extraction
@@ -174,15 +170,8 @@ For each file, the macro:
 
 ---
 
-## 👤 Author
+## Author
 
 Developed for engineering data standardization and automation workflows.
 
 ---
-
-If you want, I can also provide:
-
-* A shorter public-facing README
-* A more enterprise-oriented version
-* Badges and project structure suggestions
-* A full GitHub repository structure template
